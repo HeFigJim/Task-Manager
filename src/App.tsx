@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ITask } from "./models/ITask";
 
 function App() {
@@ -10,9 +10,7 @@ function App() {
     localStorage.getItem("tasks") || "[]"
   );
   const [tasks, setTasks] = useState(defaultTask);
-  useEffect(() => {
-    console.log(tasks);
-  }, []);
+
   return (
     <div className="mx-4 ">
       <TaskForm setTasks={setTasks} tasks={tasks} />
