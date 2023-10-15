@@ -4,6 +4,7 @@ import { ITask } from "../models/ITask";
 import "react-datepicker/dist/react-datepicker.css";
 import MyDatePicker from "./MyDatePicker";
 import categories from "../categories";
+import { v4 as uuidv4 } from "uuid";
 
 type FormProps = {
   tasks: ITask[];
@@ -11,7 +12,7 @@ type FormProps = {
 };
 const TaskForm = ({ setTasks, tasks }: FormProps) => {
   const initialValues: ITask = {
-    id: 1,
+    id: uuidv4(),
     title: "",
     dueDate: new Date(),
     category: "",
@@ -27,11 +28,11 @@ const TaskForm = ({ setTasks, tasks }: FormProps) => {
       .label("Selected Category"),
   });
   const handleSubmit = (values: ITask, helpers: FormikHelpers<ITask>) => {
-    let id = tasks[tasks.length - 1].id + 1;
-    const newTask = [...tasks, { ...values, id: ++id }];
+    let id = uuidv4();
+    const newTask = [...tasks, { ...values, id: id }];
     setTasks(newTask);
     localStorage.setItem("tasks", JSON.stringify(newTask));
-
+    console.log(tasks);
     helpers.resetForm();
   };
 
