@@ -27,7 +27,7 @@ const TaskForm = ({ setTasks, tasks }: FormProps) => {
       .label("Selected Category"),
   });
   const handleSubmit = (values: ITask, helpers: FormikHelpers<ITask>) => {
-    let id = tasks.length - 1;
+    let id = tasks[tasks.length - 1].id + 1;
     const newTask = [...tasks, { ...values, id: ++id }];
     setTasks(newTask);
     localStorage.setItem("tasks", JSON.stringify(newTask));
