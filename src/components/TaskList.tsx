@@ -7,7 +7,7 @@ type ListProps = {
 };
 
 const TaskList = ({ tasks, setTasks }: ListProps) => {
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     const updatedTask = tasks.filter((task) => task.id !== id);
     setTasks(updatedTask);
     localStorage.setItem("tasks", JSON.stringify(updatedTask));
